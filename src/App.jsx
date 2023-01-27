@@ -1,21 +1,30 @@
 import { Routes, Route } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Layout } from './components/Layout/Layout';
-import { Home } from './pages/Home/Home';
-import { Movies } from './pages/Movies/Movies';
-import { MovieCard } from './pages/MovieCard/MovieCard';
-import { NotFound } from './components/NotFound/NotFound';
+
+const Home = lazy(() => import('./pages/Home/Home'));
+const Movies = lazy(() => import('./pages/Movies/Movies'));
+const MovieDetails = lazy(() => import('./pages/MovieDetails/MovieDetails'));
+const Cast = lazy(() => import('./pages/MovieDetails/Cast/Cast'));
+const Reviews = lazy(() => import('./pages/MovieDetails/Reviews/Reviews'));
+const NotFound = lazy(() => import('./components/NotFound/NotFound'));
 
 export const App = () => {
   return (
     <Layout>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/movies/:moviesID" element={<MovieCard />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <Suspense fallback={<p>Loading...</p>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/movies/:movieId" element={<MovieDetails />}>
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
       <ToastContainer autoClose={3000} />
     </Layout>
   );
