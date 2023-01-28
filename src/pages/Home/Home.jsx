@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { getTrendingMovies } from '../../serviceAPI/serviceAPI';
 import Loader from '../../components/Loader/Loader';
+import { HomeBox } from './Home.styled';
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -22,7 +23,7 @@ const Home = () => {
   }, []);
 
   return (
-    <main>
+    <HomeBox>
       <h1>Trending today</h1>
       {loading && <Loader />}
       <ul>
@@ -35,7 +36,7 @@ const Home = () => {
             </li>
           ))}
       </ul>
-    </main>
+    </HomeBox>
   );
 };
 

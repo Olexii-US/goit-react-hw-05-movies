@@ -23,7 +23,6 @@ export const Searchbar = ({ onSearchSubmit }) => {
   return (
     <styles.HeaderSearch>
       <styles.SearchForm onSubmit={handleSubmit}>
-        <styles.SearchButton>Search</styles.SearchButton>
         <styles.SearchInput
           type="text"
           autocomplete="off"
@@ -32,6 +31,8 @@ export const Searchbar = ({ onSearchSubmit }) => {
           value={searchName}
           onChange={handleSearch}
         />
+
+        <styles.SearchButton>Search</styles.SearchButton>
       </styles.SearchForm>
     </styles.HeaderSearch>
   );
