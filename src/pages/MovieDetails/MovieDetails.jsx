@@ -1,5 +1,5 @@
 import { useState, useEffect, Suspense } from 'react';
-import { useParams, Outlet, Link, useLocation } from 'react-router-dom';
+import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { getMovieDetails } from '../../serviceAPI/serviceAPI';
 import {
   GoBackBtn,
