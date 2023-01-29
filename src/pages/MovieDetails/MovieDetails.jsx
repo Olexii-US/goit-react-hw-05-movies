@@ -12,6 +12,7 @@ import {
   InfoList,
   InfoListLink,
 } from './MovieDetails.styled';
+import image from '../../components/imageNotFound.jpg';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -42,11 +43,15 @@ const MovieDetails = () => {
     <main>
       <GoBackBtn to={location.state?.from ?? '/movies'}> 🡰 Go back</GoBackBtn>
       <MovieBox>
-        <MovieImg
-          src={`https://image.tmdb.org/t/p/original${poster_path}`}
-          alt={title}
-          width="240px"
-        />
+        {poster_path ? (
+          <MovieImg
+            src={`https://image.tmdb.org/t/p/original${poster_path}`}
+            alt={title}
+            width="240px"
+          />
+        ) : (
+          <MovieImg src={image} alt="not found" width="240px" />
+        )}
         <MovieDetailsBox>
           <h2>{title}</h2>
           <p>User score: {Math.round(vote_average * 10)}%</p>
